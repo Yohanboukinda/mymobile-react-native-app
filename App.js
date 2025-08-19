@@ -1,52 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {NavigationContainer} from "@react-navigation/native";
-import AccueilScreen from "./screens/AccueilScreen";
-import AproposScreen from "./screens/AproposScreen";
-import ReservationScreen from "./screens/ReservationScreen";
-import PaiementScreen from "./screens/PaiementScreen";
-import TelechargerScreen from "./screens/TelechargerScreen";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Ionicons } from '@expo/vector-icons';
+import AccueilScreen from './screens/AccueilScreen';
+import AproposScreen from './screens/AproposScreen';
+import ReservationScreen from './screens/ReservationScreen';
+import PaiementScreen from './screens/PaiementScreen';
+import TelechargerScreen from './screens/TelechargerScreen';
 
+const Drawer = createDrawerNavigator();
 
-
-// Créer le navigateur à onglets
-const Tab = createBottomTabNavigator();
-
-/*
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}*/
-export default function App() {
-  return (
-      <NavigationContainer style={styles.container}>
-        <Tab.Navigator
-            screenOptions={{
-              tabBarStyle: { backgroundColor: '#f8f8f8' },
-              tabBarLabelStyle: { fontSize: 12 },
-              tabBarActiveTintColor: '#007AFF',
-              tabBarInactiveTintColor: '#8E8E93',
-            }}>
-          <Tab.Screen name="Accueil" component={AccueilScreen} />
-          <Tab.Screen name="À propos" component={AproposScreen} />
-          <Tab.Screen name="Réservation" component={ReservationScreen} />
-          <Tab.Screen name="Paiement" component={PaiementScreen} />
-          <Tab.Screen name="Télécharger" component={TelechargerScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-  )
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator
+                initialRouteName="Accueil"
+                screenOptions={{
+                    drawerStyle: {
+                        backgroundColor: '#f8f8f8',
+                        width: 240,
+                    },
+                    drawerLabelStyle: {
+                        fontSize: 16,
+                    },
+                    drawerActiveTintColor: '#007AFF',
+                    drawerInactiveTintColor: '#8E8E93',
+                }}
+            >
+                <Drawer.Screen
+                    name="Accueil"
+                    component={AccueilScreen}
+                    options={{
+                        drawerIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
+                    }}
+                />
+                <Drawer.Screen
+                    name="À propos"
+                    component={AproposScreen}
+                    options={{
+                        drawerIcon: ({ color, size }) => <Ionicons name="information-circle" size={size} color={color} />,
+                    }}
+                />
+                <Drawer.Screen
+                    name="Réservation"
+                    component={ReservationScreen}
+                    options={{
+                        drawerIcon: ({ color, size }) => <Ionicons name="calendar" size={size} color={color} />,
+                    }}
+                />
+                <Drawer.Screen
+                    name="Paiement"
+                    component={PaiementScreen}
+                    options={{
+                        drawerIcon: ({ color, size }) => <Ionicons name="card" size={size} color={color} />,
+                    }}
+                />
+                <Drawer.Screen
+                    name="Télécharger"
+                    component={TelechargerScreen}
+                    options={{
+                        drawerIcon: ({ color, size }) => <Ionicons name="download" size={size} color={color} />,
+                    }}
+                />
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
